@@ -22,7 +22,7 @@
 	<tr>
 		<td width="200" class="va-t"><ul id="treeDemo" class="ztree"></ul></td>
 		<td class="va-t">
-			<iframe ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING=AUTO width=100%  height=390px SRC="product-category-add.html"></iframe>
+			<iframe ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING=AUTO width=100%  height=390px SRC="${pageContext.request.contextPath }/page/perm_addResource/toPage"></iframe>
 		</td>
 	</tr>
 </table>
@@ -38,7 +38,7 @@
 var setting = {
 	view: {
 		dblClickExpand: false,
-		showLine: false,
+		showLine: true,
 		selectedMulti: false
 	},
 	data: {

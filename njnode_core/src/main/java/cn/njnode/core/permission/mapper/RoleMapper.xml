@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.njnode.core.permission.dao.RoleDao">
+  <resultMap id="BaseResultMap" type="cn.njnode.beans.permission.Role">
+    
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="role" jdbcType="VARCHAR" property="role" />
+    <result column="des" jdbcType="VARCHAR" property="des" />
+    <result column="resource_ids" jdbcType="VARCHAR" property="resourceIds" />
+    <result column="available" jdbcType="BIT" property="available" />
+    <result column="user_names" jdbcType="VARCHAR" property="userNames" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    
+    id, role, des, resource_ids, available, user_names
+  </sql>
+  <select id="queryRoleById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteRoleById" parameterType="java.lang.Long">
+    
+    delete from sys_role
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="add" parameterType="cn.njnode.beans.permission.Role">
+    
+    insert into sys_role (id, role, des, 
+      resource_ids, available, user_names
+      )
+    values (#{id,jdbcType=BIGINT}, #{role,jdbcType=VARCHAR}, #{des,jdbcType=VARCHAR}, 
+      #{resourceIds,jdbcType=VARCHAR}, #{available,jdbcType=BIT}, #{userNames,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="addRole" parameterType="cn.njnode.beans.permission.Role">
+    
+    insert into sys_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="role != null">
+        role,
+      </if>
+      <if test="des != null">
+        des,
+      </if>
+      <if test="resourceIds != null">
+        resource_ids,
+      </if>
+      <if test="available != null">
+        available,
+      </if>
+      <if test="userNames != null">
+        user_names,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="role != null">
+        #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null">
+        #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceIds != null">
+        #{resourceIds,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null">
+        #{available,jdbcType=BIT},
+      </if>
+      <if test="userNames != null">
+        #{userNames,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateRoleById" parameterType="cn.njnode.beans.permission.Role">
+    
+    update sys_role
+    <set>
+      <if test="role != null">
+        role = #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null">
+        des = #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="resourceIds != null">
+        resource_ids = #{resourceIds,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null">
+        available = #{available,jdbcType=BIT},
+      </if>
+      <if test="userNames != null">
+        user_names = #{userNames,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.njnode.beans.permission.Role">
+    
+    update sys_role
+    set role = #{role,jdbcType=VARCHAR},
+      des = #{des,jdbcType=VARCHAR},
+      resource_ids = #{resourceIds,jdbcType=VARCHAR},
+      available = #{available,jdbcType=BIT},
+      user_names = #{userNames,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
