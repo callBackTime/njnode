@@ -1,4 +1,4 @@
-package cn.njnode.controller;
+package cn.njnode.controller.backStage;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;

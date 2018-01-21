@@ -7,12 +7,6 @@
         <dependent-module archiveName="njnode_common-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/njnode_common/njnode_common">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="njnode_core-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/njnode_core/njnode_core">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="njnode_beans-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/njnode_beans/njnode_beans">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <property name="context-root" value="njnode_manager"/>
         <property name="java-output-path" value="/njnode_manager/target/classes"/>
     </wb-module>

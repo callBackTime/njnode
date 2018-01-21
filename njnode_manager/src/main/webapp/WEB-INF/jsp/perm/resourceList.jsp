@@ -15,6 +15,15 @@
 <link rel="stylesheet" type="text/css" href="/static/h-ui.admin/css/style.css" />
 <link rel="stylesheet" type="text/css" href="/lib/zTree/v3/css/zTreeStyle/zTreeStyle.css">
 <title>资源管理</title>
+<style type="text/css">
+.ztree li span.button.add {
+       margin-left:2px; 
+       margin-right: -1px; 
+       background-position:-144px 0; 
+       vertical-align:top; 
+       *vertical-align:middle
+ }
+</style>
 </head>
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 资源管理 <span class="c-gray en">&gt;</span> 资源列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
@@ -41,6 +50,12 @@ var setting = {
 		showLine: true,
 		selectedMulti: false
 	},
+	check: {
+		enable: true
+	},
+	edit: {
+		enable:true
+	},
 	data: {
 		simpleData: {
 			enable:true,
@@ -50,31 +65,30 @@ var setting = {
 		}
 	},
 	callback: {
+
 		beforeClick: function(treeId, treeNode) {
 			var zTree = $.fn.zTree.getZTreeObj("tree");
 			if (treeNode.isParent) {
 				zTree.expandNode(treeNode);
 				return false;
 			} else {
-				demoIframe.attr("src",treeNode.file + ".html");
+				demoIframe.attr("${pageContext.request.contextPath }/page/perm_addResource/toPage");
 				return true;
 			}
 		}
 	}
 };
 
-var zNodes =[
-	{ id:1, pId:0, name:"一级分类", open:true},
-	{ id:11, pId:1, name:"二级分类"},
-	{ id:111, pId:11, name:"三级分类"},
-	{ id:112, pId:11, name:"三级分类"},
-	{ id:113, pId:11, name:"三级分类"},
-	{ id:114, pId:11, name:"三级分类"},
-	{ id:115, pId:11, name:"三级分类"},
-	{ id:12, pId:1, name:"二级分类 1-2"},
-	{ id:121, pId:12, name:"三级分类 1-2-1"},
-	{ id:122, pId:12, name:"三级分类 1-2-2"},
-];
+var zNodes = [
+      {"id":1,"name":"资源","pId":0,"open":true},
+      {"id":201,"name":"代理管理","pId":1},
+      {"id":204,"name":"录入代理商(翰奎医疗)","pId":201},
+      {"id":203,"name":"录入经理(翰奎医疗)","pId":201},
+      {"id":202,"name":"代理列表(翰奎医疗)","pId":201},
+      {"id":190,"name":"券管理","pId":1},
+      {"id":192,"name":"券规则列表","pId":190},
+      {"id":191,"name":"券列表","pId":190},
+      {"id":181,"name":"餐协会管理","pId":1},{"id":184,"name":"会员申请(餐协)","pId":181},{"id":183,"name":"企业列表(餐协)","pId":181},{"id":182,"name":"企业分类(餐协)","pId":181},{"id":158,"name":"会员管理","pId":1},{"id":180,"name":"会员列表(餐协)","pId":158},{"id":159,"name":"会员申请(餐协)","pId":158},{"id":155,"name":"活动管理","pId":1},{"id":163,"name":"活动列表(买单小程序)","pId":155},{"id":156,"name":"活动修改(餐协)","pId":155},{"id":152,"name":"新闻管理","pId":1},{"id":154,"name":"类型管理(餐协)","pId":152},{"id":153,"name":"新闻列表(餐协)","pId":152},{"id":146,"name":"个人资料","pId":1},{"id":147,"name":"密码修改(通用)","pId":146},{"id":144,"name":"骑手管理","pId":1},{"id":161,"name":"骑手列表(名校优选)","pId":144},{"id":145,"name":"添加骑手(名校优选)","pId":144},{"id":137,"name":"店铺管理","pId":1},{"id":193,"name":"店铺管理(先锋书店)","pId":137},{"id":185,"name":"店铺管理(永城轮胎)","pId":137},{"id":169,"name":"店铺管理(名校优选)","pId":137},{"id":166,"name":"店铺管理(买单小程序)","pId":137},{"id":165,"name":"Logo修改(公用)","pId":137},{"id":160,"name":"店铺列表(餐协)","pId":137},{"id":140,"name":"店铺列表(美肤)","pId":137},{"id":139,"name":"店铺列表(支点健身)","pId":137},{"id":138,"name":"店铺列表(祁冠茗茶)","pId":137},{"id":133,"name":"车辆信息","pId":1},{"id":134,"name":"车辆信息","pId":133},{"id":131,"name":"服务管理","pId":1},{"id":132,"name":"服务管理(永城轮胎)","pId":131},{"id":127,"name":"品牌详情","pId":1},{"id":128,"name":"品牌详情","pId":127},{"id":115,"name":"茶叶管理","pId":1},{"id":116,"name":"茶叶列表","pId":115},{"id":113,"name":"意见反馈","pId":1},{"id":114,"name":"意见反馈()","pId":113},{"id":111,"name":"教练管理","pId":1},{"id":112,"name":"教练列表(支点健身)","pId":111},{"id":106,"name":"课程管理","pId":1},{"id":179,"name":"课程核销(支点健身)","pId":106},{"id":178,"name":"科普详情(支点健身)","pId":106},{"id":110,"name":"近期活动(支点健身)","pId":106},{"id":109,"name":"免费课程","pId":106},{"id":108,"name":"精选课程","pId":106},{"id":107,"name":"人气单项","pId":106},{"id":103,"name":"卡片管理","pId":1},{"id":105,"name":"卡片类型","pId":103},{"id":104,"name":"会员卡管理","pId":103},{"id":93,"name":"主题管理","pId":1},{"id":198,"name":"类型管理(先锋书店)","pId":93},{"id":197,"name":"主题管理(先锋书店)","pId":93},{"id":187,"name":"主题管理(翰奎医疗)","pId":93},{"id":168,"name":"主题类型(名校优选)","pId":93},{"id":167,"name":"主题列表(名校优选)","pId":93},{"id":142,"name":"主题列表(茶叶主题管理)","pId":93},{"id":94,"name":"主题列表","pId":93},{"id":81,"name":"分销管理","pId":1},{"id":82,"name":"分销管理","pId":81},{"id":68,"name":"数据总览","pId":1},{"id":69,"name":"数据总览","pId":68},{"id":66,"name":"轮播图管理","pId":1},{"id":196,"name":"轮播图管理(先锋书店)","pId":66},{"id":186,"name":"轮播图管理(翰奎医疗)","pId":66},{"id":173,"name":"轮播图管理(名校优选)","pId":66},{"id":162,"name":"轮播图管理(买单小程序)","pId":66},{"id":157,"name":"轮播图管理(餐协)","pId":66},{"id":143,"name":"轮播图管理(永城轮胎)","pId":66},{"id":141,"name":"轮播图管理(支点健身)","pId":66},{"id":67,"name":"轮播图管理","pId":66},{"id":61,"name":"产品管理","pId":1},{"id":195,"name":"书籍管理(先锋书店)","pId":61},{"id":194,"name":"分类管理(先锋书店)","pId":61},{"id":189,"name":"分类管理(翰奎医疗)","pId":61},{"id":188,"name":"商品管理(翰奎医疗)","pId":61},{"id":177,"name":"轮胎列表(永城轮胎)","pId":61},{"id":171,"name":"分类管理(名校优选)","pId":61},{"id":170,"name":"商品管理(名校优选)","pId":61},{"id":95,"name":"科普详情","pId":61},{"id":63,"name":"分类管理","pId":61},{"id":62,"name":"商品管理","pId":61},{"id":59,"name":"订单管理","pId":1},{"id":200,"name":"核销(翰奎医疗)","pId":59},{"id":199,"name":"订单管理(翰奎医疗)","pId":59},{"id":176,"name":"订单核销(公用的)","pId":59},{"id":164,"name":"订单列表(买单小程序)","pId":59},{"id":60,"name":"订单列表","pId":59},{"id":57,"name":"优惠券管理","pId":1},{"id":175,"name":"优惠券规则(买单小程序)","pId":57},{"id":174,"name":"优惠券列表(买单小程序)","pId":57},{"id":172,"name":"优惠券列表(名校优选)","pId":57},{"id":58,"name":"优惠券列表","pId":57},{"id":55,"name":"投票管理","pId":1},{"id":56,"name":"投票统计","pId":55},{"id":53,"name":"网红管理","pId":1},{"id":54,"name":"网红列表","pId":53},{"id":51,"name":"支付管理","pId":1},{"id":52,"name":"支付配置","pId":51},{"id":47,"name":"权限管理","pId":1},{"id":50,"name":"资源管理","pId":47},{"id":49,"name":"角色管理","pId":47},{"id":48,"name":"用户管理","pId":47}];
 		
 var code;
 		
